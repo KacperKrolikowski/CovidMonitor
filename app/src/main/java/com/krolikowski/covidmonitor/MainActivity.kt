@@ -3,6 +3,9 @@ package com.krolikowski.covidmonitor
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.mashape.unirest.http.HttpResponse
 import com.mashape.unirest.http.Unirest
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
@@ -22,20 +25,23 @@ class MainActivity : AppCompatActivity() {
 
         val covApiKey = BuildConfig.COV_API_KEY
 
+        //[{"country":"Italy","provinces":[{"province":"Italy","confirmed":110574,"recovered":16847,"deaths":13155,"active":80572}],"latitude":41.87194,"longitude":12.56738,"date":"2020-04-01"}]
+
         doAsync {
 
             var response =
                     Unirest.get("https://covid-19-data.p.rapidapi.com/report/country/name?date=2020-04-01&name=Italy")
-                            .header("x-rapidapi-key", "c9016797e3mshcb3f479b86fc845p1fcc9djsnd7a2f17e2f37")
+                            .header("x-rapidapi-key", covApiKey)
                             .header("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
                             .asString()
 
 
-            var all = response.body
+            var countryInfo = response.body
 
-            val allres = JSONObject(all).getString("country")
             activityUiThread {
+
                 mTextView.text = allres.toString()
+
             }
 
         }
