@@ -13,18 +13,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var selectedCountry: String = "Poland"
-        var currentData: String = "2020-11-30"
+        var selectedCountry = "Poland"
+        var currentData = "2020-11-30"
 
-        var CovApiKey = BuildConfig.COV_API_KEY
+        val covApiKey = BuildConfig.COV_API_KEY
 
         doAsync {
             val client = OkHttpClient()
 
             val request = Request.Builder()
-                .url("https://covid-19-data.p.rapidapi.com/help/countries")
+                .url("https://covid-19-data.p.rapidapi.com/report/country/name?date=$currentData&name=$selectedCountry")
                 .get()
-                .addHeader("x-rapidapi-key", CovApiKey)
+                .addHeader("x-rapidapi-key", covApiKey)
                 .addHeader("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
                 .build()
 
