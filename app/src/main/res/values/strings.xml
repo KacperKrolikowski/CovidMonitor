@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Covid Monitor</string>
+    <string name="country_name">Country: </string>
+    <string name="active_case">Active cases: </string>
+    <string name="fatal_case">Fatal cases: </string>
+    <string name="recovered_cases">Recovered cases: </string>
+    <string name="all_time_confirmed_cases">All time confirmed cases: </string>
+    <string name="loading">Loading...</string>
+    <string name="update_data">Update</string>
 </resources>
