@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mTextView: TextView = findViewById(R.id.textView)
+        val mNameCountryTV: TextView = findViewById(R.id.country_name)
+        val mActiveCountryTV: TextView = findViewById(R.id.country_active)
+        val mDeathsCountryTV: TextView = findViewById(R.id.country_deaths)
+        val mRecoveredCountryTV: TextView = findViewById(R.id.country_recovered)
+        val mConfirmedCountryTV: TextView = findViewById(R.id.country_confirmed)
 
         var selectedCountry = "Poland"
         var currentData = "2020-11-30"
@@ -35,12 +39,11 @@ class MainActivity : AppCompatActivity() {
                             .header("x-rapidapi-host", "covid-19-data.p.rapidapi.com")
                             .asString()
 
-
-            var countryInfo = response.body
+            var countryInfoString = response.body.toString()
 
             activityUiThread {
 
-                mTextView.text = allres.toString()
+                mNameCountryTV.text = countryInfoString
 
             }
 
