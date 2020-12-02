@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
+import com.google.gson.annotations.SerializedName
 import com.mashape.unirest.http.HttpResponse
 import com.mashape.unirest.http.Unirest
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 import org.json.JSONObject
+import com.krolikowski.covidmonitor.SingleCountry
+import com.krolikowski.covidmonitor.SingleCountryItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,9 +45,13 @@ class MainActivity : AppCompatActivity() {
 
             var countryInfoString = response.body.toString()
 
+            val gson = GsonBuilder().create()
+            val singleCountryInfo = gson.fromJson(countryInfoString, SingleCountry::class.java)
+            println(countryInfoString)
+
             activityUiThread {
 
-                mNameCountryTV.text = countryInfoString
+                mNameCountryTV.text = singleCountryInfo[0].country
 
             }
 
