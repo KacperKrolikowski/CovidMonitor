@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.GsonBuilder
 import com.mashape.unirest.http.Unirest
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,6 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        country_recycle_view.layoutManager = LinearLayoutManager(this)
+        country_recycle_view.adapter
 
         country_list_fab.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
