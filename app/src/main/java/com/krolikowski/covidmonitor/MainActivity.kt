@@ -1,19 +1,14 @@
 package com.krolikowski.covidmonitor
 
-import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.gson.GsonBuilder
 import com.mashape.unirest.http.Unirest
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.sin
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +16,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mUpdateButton: Button = findViewById(R.id.update_button)
+        country_list_fab.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                if(country_recycle_view.isVisible) {
+                    country_recycle_view.visibility = View.INVISIBLE
+                } else {
+                    country_recycle_view.visibility = View.VISIBLE
+                }
+            }
+        })
 
         var selectedCountry = "Italy"
 
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
         updateData(selectedCountry)
 
-        mUpdateButton.setOnClickListener {
+        update_button.setOnClickListener {
             updateData("USA")
         }
 
@@ -65,14 +68,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateData(name: String){
 
-        val mNameCountryTV: TextView = findViewById(R.id.country_name)
-        val mActiveCountryTV: TextView = findViewById(R.id.country_active)
-        val mNewActiveCountryTV: TextView = findViewById(R.id.country_new_case)
-        val mDeathsCountryTV: TextView = findViewById(R.id.country_deaths)
-        val mNewDeathCountryTV: TextView = findViewById(R.id.country_new_death)
-        val mRecoveredCountryTV: TextView = findViewById(R.id.country_recovered)
-        val mConfirmedCountryTV: TextView = findViewById(R.id.country_confirmed)
-        val mDataTV: TextView = findViewById(R.id.last_update_data)
         val covApiKey = BuildConfig.COV_API_KEY
 
         doAsync {
@@ -90,14 +85,14 @@ class MainActivity : AppCompatActivity() {
 
             activityUiThread {
 
-                (getString(R.string.country_name)+ " " + singleCountryInfo.countryText).also { mNameCountryTV.text = it }
-                (getString(R.string.active_case)+ " " + singleCountryInfo.activeCasesText).also { mActiveCountryTV.text = it }
-                (getString(R.string.new_active_case)+ " " + singleCountryInfo.newCasesText).also { mNewActiveCountryTV.text = it }
-                (getString(R.string.fatal_case)+ " " + singleCountryInfo.totalDeathsText).also { mDeathsCountryTV.text = it }
-                (getString(R.string.new_fatal_cases)+ " " + singleCountryInfo.newDeathsText).also { mNewDeathCountryTV.text = it }
-                (getString(R.string.recovered_cases)+ " " + singleCountryInfo.totalRecoveredText).also { mRecoveredCountryTV.text = it }
-                (getString(R.string.all_time_confirmed_cases)+ " " + singleCountryInfo.totalCasesText).also { mConfirmedCountryTV.text = it }
-                (getString(R.string.last_update)+ " " + singleCountryInfo.lastUpdate).also { mDataTV.text = it }
+                (getString(R.string.country_name)+ " " + singleCountryInfo.countryText).also { country_name.text = it }
+                (getString(R.string.active_case)+ " " + singleCountryInfo.activeCasesText).also { country_active.text = it }
+                (getString(R.string.new_active_case)+ " " + singleCountryInfo.newCasesText).also { country_new_case.text = it }
+                (getString(R.string.fatal_case)+ " " + singleCountryInfo.totalDeathsText).also { country_deaths.text = it }
+                (getString(R.string.new_fatal_cases)+ " " + singleCountryInfo.newDeathsText).also { country_new_death.text = it }
+                (getString(R.string.recovered_cases)+ " " + singleCountryInfo.totalRecoveredText).also { country_recovered.text = it }
+                (getString(R.string.all_time_confirmed_cases)+ " " + singleCountryInfo.totalCasesText).also { country_confirmed.text = it }
+                (getString(R.string.last_update)+ " " + singleCountryInfo.lastUpdate).also { last_update_data.text = it }
 
             }
 
