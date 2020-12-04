@@ -2,6 +2,7 @@ package com.krolikowski.covidmonitor
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,11 +12,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainAdapter.AdapterCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         country_recycle_view.layoutManager = LinearLayoutManager(this)
         country_recycle_view.adapter = MainAdapter()
@@ -69,5 +72,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    override fun onMethodCallback(yourValue: String?) {
+        Toast.makeText(this, yourValue, Toast.LENGTH_LONG).show()
     }
 }
