@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        var selectedCountry = intent.getStringExtra("country").toString()
+        val selectedCountry = intent.getStringExtra("country").toString()
 
         updateData(selectedCountry)
 
