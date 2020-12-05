@@ -1,5 +1,6 @@
 package com.krolikowski.covidmonitor
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,15 @@ class MainActivity : AppCompatActivity() {
         var selectedCountry = intent.getStringExtra("country").toString()
 
         updateData(selectedCountry)
+
+        progressBar.max = 800
+
+        val targetProgress = 800
+
+        ObjectAnimator.ofInt(progressBar, "progress", targetProgress)
+            .setDuration(800)
+            .start()
+
 
         change_country_button.setOnClickListener {
             val intent = Intent(applicationContext, CountrySelectorActivity::class.java)
