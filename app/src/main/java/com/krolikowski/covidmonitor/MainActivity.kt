@@ -2,6 +2,8 @@ package com.krolikowski.covidmonitor
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         progressBar.max = 800
 
         val targetProgress = 800
+
+        progressBar.progressTintList = ColorStateList.valueOf(Color.GREEN)
 
         ObjectAnimator.ofInt(progressBar, "progress", targetProgress)
             .setDuration(800)

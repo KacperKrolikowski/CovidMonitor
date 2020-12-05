@@ -30,6 +30,7 @@ class CountrySelectorActivity : AppCompatActivity() {
 
         arrow_next.setOnClickListener {
             val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.putExtra("country", selectedCountry)
             startActivity(intent)
             finish()
