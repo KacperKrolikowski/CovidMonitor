@@ -10,4 +10,5 @@
     <string name="last_update">Last update: </string>
     <string name="new_active_case">New active case: </string>
     <string name="new_fatal_cases">New fatal cases: </string>
+    <string name="no_data">No actual data</string>
 </resources>

@@ -61,11 +61,38 @@ class MainActivity : AppCompatActivity() {
             activityUiThread {
 
                 (getString(R.string.country_name) + " " + singleCountryInfo.countryText).also { country.text = it }
-                (getString(R.string.active_case) + " " + singleCountryInfo.activeCasesText).also { country_active.text = it }
-                (getString(R.string.new_active_case) + " " + singleCountryInfo.newCasesText).also { country_new_case.text = it }
-                (getString(R.string.fatal_case) + " " + singleCountryInfo.totalDeathsText).also { country_deaths.text = it }
-                (getString(R.string.new_fatal_cases) + " " + singleCountryInfo.newDeathsText).also { country_new_death.text = it }
-                (getString(R.string.recovered_cases) + " " + singleCountryInfo.totalRecoveredText).also { country_recovered.text = it }
+
+                if(singleCountryInfo.activeCasesText == ""){
+                    (getString(R.string.active_case) + " " + getString(R.string.no_data)).also { country_active.text = it }
+                } else {
+                    (getString(R.string.active_case) + " " + singleCountryInfo.activeCasesText).also { country_active.text = it
+                    }
+                }
+
+                if(singleCountryInfo.newCasesText == ""){
+                    (getString(R.string.new_active_case) + " " + getString(R.string.no_data)).also { country_new_case.text = it }
+                } else {
+                    (getString(R.string.new_active_case) + " " + singleCountryInfo.newCasesText).also { country_new_case.text = it }
+                }
+
+                if(singleCountryInfo.totalDeathsText == ""){
+                    (getString(R.string.fatal_case) + " " + getString(R.string.no_data)).also { country_deaths.text = it }
+                } else {
+                    (getString(R.string.fatal_case) + " " + singleCountryInfo.totalDeathsText).also { country_deaths.text = it }
+                }
+
+                if(singleCountryInfo.newDeathsText == ""){
+                    (getString(R.string.new_fatal_cases) + " " + getString(R.string.no_data)).also { country_new_death.text = it }
+                } else {
+                    (getString(R.string.new_fatal_cases) + " " + singleCountryInfo.newDeathsText).also { country_new_death.text = it }
+                }
+
+                if(singleCountryInfo.totalRecoveredText == ""){
+                    (getString(R.string.recovered_cases) + " " + getString(R.string.no_data)).also { country_recovered.text = it }
+                } else {
+                    (getString(R.string.recovered_cases) + " " + singleCountryInfo.totalRecoveredText).also { country_recovered.text = it }
+                }
+
                 (getString(R.string.all_time_confirmed_cases) + " " + singleCountryInfo.totalCasesText).also { country_confirmed.text = it }
                 (getString(R.string.last_update) + " " + singleCountryInfo.lastUpdate).also { last_update_data.text = it }
 
