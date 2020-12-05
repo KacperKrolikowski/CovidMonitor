@@ -18,20 +18,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportActionBar!!.hide()
 
         var selectedCountry = intent.getStringExtra("country").toString()
 
         updateData(selectedCountry)
 
-        progressBar.max = 800
+        progressBar.max = 1000
 
-        val targetProgress = 800
+        val targetProgress = 1000
 
         progressBar.progressTintList = ColorStateList.valueOf(Color.GREEN)
 
         ObjectAnimator.ofInt(progressBar, "progress", targetProgress)
-            .setDuration(800)
+            .setDuration(1000)
             .start()
 
 
