@@ -23,7 +23,7 @@ class CountrySelectorActivity : AppCompatActivity() {
 
         country_picker.displayedValues = pickerValues
 
-        country_picker.setOnValueChangedListener { picker, oldVal, newVal -> selectedCountry =
+        country_picker.setOnValueChangedListener { _, _, newVal -> selectedCountry =
             pickerValues[newVal]
         }
 

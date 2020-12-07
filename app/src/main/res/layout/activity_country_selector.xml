@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".CountrySelectorActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/covidMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/country_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/covid_map" />
+
     <NumberPicker
         android:id="@+id/country_picker"
         android:layout_width="wrap_content"
@@ -19,7 +31,7 @@
         android:id="@+id/arrow_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
