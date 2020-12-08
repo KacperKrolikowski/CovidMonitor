@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class IntroSliderAdapter(private val introSlides: List<IntroSlide>):
-    RecyclerView.Adapter<IntroSliderAdapter.IntroSlideViewHolder>(){
+class IntroSliderAdapter(private val introSlides: List<IntroSlide>) :
+    RecyclerView.Adapter<IntroSliderAdapter.IntroSlideViewHolder>() {
 
 
+    inner class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val mTipView =
+            view.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.covid_tips)
 
-    inner class IntroSlideViewHolder(view: View): RecyclerView.ViewHolder(view){
-        private val mTipView = view.findViewById<com.airbnb.lottie.LottieAnimationView>(R.id.covid_tips)
-
-        fun bind(introSlide: IntroSlide){
+        fun bind(introSlide: IntroSlide) {
             mTipView.setAnimation(introSlide.image)
         }
     }
