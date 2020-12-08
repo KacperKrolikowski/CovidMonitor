@@ -14,10 +14,25 @@ import org.jetbrains.anko.doAsync
 
 class MainActivity : AppCompatActivity() {
 
+    private val introSliderAdapter = IntroSliderAdapter(
+        listOf(
+            IntroSlide(
+                R.raw.disctance
+            ),
+            IntroSlide(
+                R.raw.hand_wash
+            ),
+            IntroSlide(
+                R.raw.stay_home
+            )
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewPager.adapter = introSliderAdapter
 
         val selectedCountry = intent.getStringExtra("country").toString()
 
