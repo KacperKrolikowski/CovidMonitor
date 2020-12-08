@@ -58,12 +58,10 @@ class MainActivity : AppCompatActivity() {
                 currentPage = 0
             }
 
-            //The second parameter ensures smooth scrolling
             viewPager.setCurrentItem(currentPage++, true)
         }
 
         Timer().schedule(object : TimerTask() {
-            // task to be scheduled
             override fun run() {
                 handler.post(update)
             }
@@ -110,9 +108,7 @@ class MainActivity : AppCompatActivity() {
 
             activityUiThread {
 
-                (getString(R.string.country_name) + " " + singleCountryInfo.countryText).also {
-                    country.text = it
-                }
+                    country.text = singleCountryInfo.countryText
 
                 if (singleCountryInfo.activeCasesText == "") {
                     (getString(R.string.active_case) + " " + getString(R.string.no_data)).also {
